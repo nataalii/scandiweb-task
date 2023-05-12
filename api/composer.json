@@ -1,0 +1,10 @@
+{
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "v3.16"
+    },
+    "scripts": {
+        "format-all": [
+            "./vendor/bin/php-cs-fixer fix ./ --using-cache=no"
+        ]
+    }
+}
