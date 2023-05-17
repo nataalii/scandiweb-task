@@ -11,7 +11,7 @@ const ProductList = () => {
     <Layout>
       <Header
         title='Product List'
-        firstButton={<Link to={'/add'}>Add</Link>}
+        firstButton={<Link to={'/add-product'}>Add</Link>}
         secButton='Mass Delete'
         massDelete={() => massDelete()}
       />
