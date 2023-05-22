@@ -2,11 +2,22 @@ import Layout from '../../components/layout/Layout';
 import ProductItem from './components/ProductItem/ProductItem';
 import Header from '../../components/layout/Header';
 import { Link } from 'react-router-dom';
+import useProductList from './useProductList';
 
 const ProductList = () => {
-  const massDelete = () => {
-    console.log('delete');
-  };
+  const { massDelete, productList } = useProductList();
+  const products = productList?.map((product, id) => {
+    return (
+      <div key={id}>
+        <ProductItem
+          sku={product.sku}
+          name={product.name}
+          price={product.price}
+          size={product.size}
+        />
+      </div>
+    );
+  });
   return (
     <Layout>
       <Header
@@ -15,10 +26,7 @@ const ProductList = () => {
         secButton='Mass Delete'
         massDelete={() => massDelete()}
       />
-      <div className=' flex gap-10 flex-wrap w-full py-5 '>
-        <ProductItem />
-        <ProductItem />
-      </div>
+      <div className=' flex gap-10 flex-wrap w-full py-5 '>{products}</div>
     </Layout>
   );
 };

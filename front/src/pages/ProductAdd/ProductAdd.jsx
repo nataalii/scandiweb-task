@@ -2,17 +2,12 @@ import { Link } from 'react-router-dom';
 import Layout from '../../components/layout/Layout';
 import TextInput from './components/TextInput/TextInput';
 import TypeSwitcher from './components/TypeSwitcher/TypeSwitcher';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 import Header from '../../components/layout/Header';
-import axios from 'axios';
+import useProductAdd from './useProductAdd';
 
 const ProductAdd = () => {
-  const methods = useForm({ mode: 'all' });
-  const onSubmit = async (data) => {
-    console.log(data);
-    await axios.post('http://localhost:8080/api', data);
-  };
-
+  const { methods, onSubmit } = useProductAdd();
   return (
     <Layout>
       <FormProvider {...methods}>
