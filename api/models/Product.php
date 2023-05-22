@@ -1,60 +1,91 @@
 <?php
 
+namespace app\models;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
 class Product
 {
     protected $conn;
+    protected $id;
+    protected $sku;
+    protected $name;
+    protected $price;
+    protected $productType;
+    protected $size;
     protected $created_at;
-
 
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
-    public function create()
+    private function getCurrentDateTime()
     {
-        $product = json_decode(file_get_contents('php://input'));
+        return date('Y-m-d H:i:s');
+    }
 
-        // Check if SKU is duplicated
-        $checkSql = "SELECT COUNT(*) FROM products WHERE sku = :sku";
+    private function checkDuplicateSku($sku)
+    {
+        $sql = "SELECT COUNT(*) FROM products WHERE sku = :sku";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':sku', $sku);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
 
-        $checkStmt = $this->conn->prepare($checkSql);
-        $checkStmt->bindParam(':sku', $product->sku);
-        $checkStmt->execute();
-        $isDuplicated = $checkStmt->fetchColumn();
+    public function setValues($values)
+    {
+        $this->id = $values['id'] ?? null;
+        $this->sku = $values['sku'] ?? null;
+        $this->name = $values['name'] ?? null;
+        $this->price = $values['price'] ?? null;
+        $this->productType = $values['productType'] ?? null;
+        $this->size = $values['size'] ?? null;
+        $this->created_at = $values['created_at'] ?? null;
+    }
 
+    public function create($product)
+    {
+        $isDuplicated = $this->checkDuplicateSku($product->sku);
         if ($isDuplicated) {
-            $response = ['status' => 0, 'message' => 'Error: SKU should be unique!'];
+            http_response_code(400);
+            $response = ['message' => 'Error: SKU should be unique!'];
             echo json_encode($response);
-            return;
         }
 
-        $sql = "INSERT INTO products (id, sku, name, price, productType, size, created_at) VALUES (null, :sku, :name, :price, :productType, :size, :created_at)";
+        // Set the values for the new product
+        $this->setValues([
+            'sku' => $product->sku,
+            'name' => $product->name,
+            'price' => $product->price,
+            'productType' => $product->productType,
+            'size' => $product->size,
+            'created_at' => $this->getCurrentDateTime()
+        ]);
+
+        $sql = "INSERT INTO products (sku, name, price, productType, size, created_at) VALUES (:sku, :name, :price, :productType, :size, :created_at)";
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bindParam(':sku', $product->sku);
-        $stmt->bindParam(':name', $product->name);
-        $stmt->bindParam(':price', $product->price);
-        $stmt->bindParam(':productType', $product->productType);
-        $stmt->bindParam(':size', $product->size);
+        // Bind the parameters
+        $stmt->bindParam(':sku', $this->sku);
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':price', $this->price);
+        $stmt->bindParam(':productType', $this->productType);
+        $stmt->bindParam(':size', $this->size);
         $stmt->bindParam(':created_at', $this->created_at);
 
+        // Execute the statement and check if the product was created successfully
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Product Created Successfully!'];
         } else {
             $response = ['status' => 0, 'message' => 'Failed to Create Product!'];
         }
+
         echo json_encode($response);
         return;
-    }
-
-    public function delete($id)
-    {
     }
 
 

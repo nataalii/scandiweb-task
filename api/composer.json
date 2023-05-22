@@ -1,6 +1,18 @@
 {
+    "name": "natalia/api",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "nnataali",
+            "email": "natalia.charkviani.1@btu.edu.ge"
+        }
+    ],
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "v3.16"
+        "friendsofphp/php-cs-fixer": "^3.16"
     },
     "scripts": {
         "format-all": [
