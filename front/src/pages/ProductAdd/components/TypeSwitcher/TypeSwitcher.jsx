@@ -27,15 +27,32 @@ const TypeSwitcher = (props) => {
           {formState.errors[props.id]?.message}
         </p>
       </div>
-      {type === 'DVD' && <TextInput name='Size (MB)' id='size' type='number' />}
+      {type === 'DVD' && (
+        <TextInput label='Size (MB)' name='size' id='size' type='number' />
+      )}
       {type === 'Book' && (
-        <TextInput name='Weight (KG)' id='weight' type='number' />
+        <TextInput
+          label='Weight (KG)'
+          name='weight'
+          id='weight'
+          type='number'
+        />
       )}
       {type === 'Furniture' && (
         <>
-          <TextInput name='Height (CM)' id='height' type='number' />
-          <TextInput name='width (CM)' id='width' type='number' />
-          <TextInput name='Length (CM)' id='length' type='number' />
+          <TextInput
+            label='Height (CM)'
+            name='height'
+            id='height'
+            type='number'
+          />
+          <TextInput label='Width (CM)' name='width' id='width' type='number' />
+          <TextInput
+            label='Length (CM)'
+            name='length'
+            id='length'
+            type='number'
+          />
         </>
       )}
     </>

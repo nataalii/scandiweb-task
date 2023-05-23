@@ -7,8 +7,8 @@ const ProductItem = (props) => {
       />
       <h1>{props.sku}</h1>
       <h2>{props.name}</h2>
-      <h3>{props.price}</h3>
-      <p>{props.size}</p>
+      <h3>{props.price} $</h3>
+      <p>{props.attribute}</p>
     </div>
   );
 };

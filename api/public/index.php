@@ -20,7 +20,7 @@ $conn = $database->connect();
 $router = new Router($conn);
 
 $router->get('/', [ProductController::class, 'index']);
-$router->get('/products', [ProductController::class, 'getAll']);
+$router->get('/products', [ProductController::class, 'show']);
 $router->get('/products/create', [ProductController::class, 'create']);
 $router->post('/products/create', [ProductController::class, 'create']);
 

@@ -6,6 +6,7 @@ const useProductAdd = () => {
   const methods = useForm({ mode: 'all' });
   const navigate = useNavigate();
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       await axios.post('http://localhost:8080/products/create', data);
       navigate('/');

@@ -6,6 +6,7 @@ import useProductList from './useProductList';
 
 const ProductList = () => {
   const { massDelete, productList } = useProductList();
+  console.log(productList);
   const products = productList?.map((product, id) => {
     return (
       <div key={id}>
@@ -13,7 +14,7 @@ const ProductList = () => {
           sku={product.sku}
           name={product.name}
           price={product.price}
-          size={product.size}
+          attribute={product.attribute}
         />
       </div>
     );

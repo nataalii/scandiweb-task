@@ -18,9 +18,9 @@ const ProductAdd = () => {
             secButton={<Link to={'/'}>Cancel</Link>}
           />
           <div className='max-w-[380px] w-[100%] flex flex-col gap-1 mt-5'>
-            <TextInput name='SKU' id='sku' />
-            <TextInput name='Name' id='name' />
-            <TextInput name='Price' id='price' type='number' />
+            <TextInput label='SKU' name='sku' id='sku' />
+            <TextInput label='Name' name='name' id='name' />
+            <TextInput label='Price' name='price' id='price' type='number' />
             <TypeSwitcher />
           </div>
         </form>
