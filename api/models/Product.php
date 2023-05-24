@@ -43,6 +43,7 @@ abstract class Product
             http_response_code(400);
             $response = ['message' => 'Error: SKU should be unique!'];
             echo json_encode($response);
+            return;
         }
 
 

@@ -1,9 +1,11 @@
 const ProductItem = (props) => {
   return (
-    <div className=' w-[300px] h-[200px] flex flex-col items-center justify-center border-[1px] border-black relative'>
+    <div className=' w-[280px] h-[200px] flex flex-col items-center justify-center border-[1px] border-black relative'>
       <input
         type='checkbox'
+        id='delete-checkbox'
         className='absolute top-3 left-3 w-5 h-5 rounded cursor-pointer'
+        onChange={() => props.onCheckboxChange(props.id)}
       />
       <h1>{props.sku}</h1>
       <h2>{props.name}</h2>

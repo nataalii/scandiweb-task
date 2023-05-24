@@ -2,10 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useProductList = () => {
-  const massDelete = () => {
-    console.log('delete');
-  };
   const [productList, setProductList] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const fetchProducts = async () => {
     try {
@@ -20,7 +18,29 @@ const useProductList = () => {
     fetchProducts();
   }, []);
 
-  return { massDelete, productList };
+  const handleCheckboxChange = (productId) => {
+    const isSelected = selectedProducts.includes(productId);
+    if (isSelected) {
+      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+    } else {
+      setSelectedProducts([...selectedProducts, productId]);
+    }
+  };
+
+  const handleMassDelete = async () => {
+    try {
+      await axios.post('http://localhost:8080/products/delete', {
+        selectedProducts,
+      });
+
+      setSelectedProducts([]);
+      fetchProducts();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return { productList, handleCheckboxChange, handleMassDelete };
 };
 
 export default useProductList;
