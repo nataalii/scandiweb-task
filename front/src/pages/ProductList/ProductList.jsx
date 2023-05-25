@@ -31,8 +31,8 @@ const ProductList = () => {
     <Layout>
       <Header
         title='Product List'
-        firstButton={<Link to={'/add-product'}>Add</Link>}
-        secButton='Mass Delete'
+        firstButton={<Link to={'/add-product'}>ADD</Link>}
+        secButton='MASS DELETE'
         massDelete={() => handleMassDelete()}
       />
       <div className=' flex gap-10 flex-wrap w-full py-10 '>{products}</div>

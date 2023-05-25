@@ -11,7 +11,7 @@ const ProductAdd = () => {
   return (
     <Layout>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} id='product_form'>
           <Header
             title='Product Add'
             firstButton='Save'

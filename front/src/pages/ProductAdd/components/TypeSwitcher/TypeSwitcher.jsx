@@ -16,6 +16,7 @@ const TypeSwitcher = (props) => {
           <select
             {...register('productType')}
             className='text-gray-500 outline-none px-3 py-1 rounded-lg border-[1px] border-black w-40 '
+            id='productType'
             onChange={handleTypeChange}
           >
             <option value='DVD'>DVD</option>
