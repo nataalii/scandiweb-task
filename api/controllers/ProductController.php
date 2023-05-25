@@ -8,12 +8,12 @@ use app\models\Furniture;
 
 class ProductController
 {
-    public static function index()
+    public function index()
     {
         return "Hello there!";
     }
 
-    public static function show($conn)
+    public function show($conn)
     {
 
         $sql = "SELECT * FROM products";
@@ -23,7 +23,7 @@ class ProductController
         return json_encode($products->fetchAll());
     }
 
-    public static function create($conn)
+    public function create($conn)
     {
         $productData = json_decode(file_get_contents('php://input'));
 
@@ -43,17 +43,16 @@ class ProductController
         return $product->create($productData);
     }
 
-    public static function delete($conn)
+    public function delete($conn)
     {
         $productData = json_decode(file_get_contents('php://input'));
         $productIds = $productData->selectedProducts;
 
-        $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-        $sql = "DELETE FROM products WHERE id IN ($placeholders)";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($productIds);
-
-        return json_encode(['success' => true]);
+        foreach ($productIds as $productId) {
+            $products = $conn->prepare("DELETE FROM products WHERE id = :id");
+            $products->bindParam('id', $productId);
+            $products->execute();
+        }
     }
 
 }

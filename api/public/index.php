@@ -19,10 +19,10 @@ $conn = $database->connect();
 
 $router = new Router($conn);
 
-$router->get('/', [ProductController::class, 'index']);
-$router->get('/products', [ProductController::class, 'show']);
-$router->get('/products/create', [ProductController::class, 'create']);
-$router->post('/products/create', [ProductController::class, 'create']);
-$router->post('/products/delete', [ProductController::class, 'delete']);
+$router->get('/', [new ProductController(), 'index']);
+$router->get('/products', [new ProductController(), 'show']);
+$router->get('/products/create', [new ProductController(), 'create']);
+$router->post('/products/create', [new ProductController(), 'create']);
+$router->post('/products/delete', [new ProductController(), 'delete']);
 
 $router->resolve();
