@@ -5,8 +5,12 @@ import { Link } from 'react-router-dom';
 import useProductList from './useProductList';
 
 const ProductList = () => {
-  const { productList, handleCheckboxChange, handleMassDelete } =
-    useProductList();
+  const {
+    selectedProducts,
+    productList,
+    handleCheckboxChange,
+    handleMassDelete,
+  } = useProductList();
 
   const products = productList?.map((product, id) => {
     return (
@@ -17,6 +21,7 @@ const ProductList = () => {
           name={product.name}
           price={product.price}
           attribute={product.attribute}
+          selectedProducts={selectedProducts}
           onCheckboxChange={handleCheckboxChange}
         />
       </div>

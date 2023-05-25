@@ -40,7 +40,12 @@ const useProductList = () => {
     }
   };
 
-  return { productList, handleCheckboxChange, handleMassDelete };
+  return {
+    productList,
+    handleCheckboxChange,
+    handleMassDelete,
+    selectedProducts,
+  };
 };
 
 export default useProductList;
