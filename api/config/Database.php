@@ -12,10 +12,32 @@ class Database
     private $user = 'root';
     private $pass = 'nanana';
 
+
+    public function getServer()
+    {
+        return $this->server;
+    }
+
+    public function getDbname(): string
+    {
+        return $this->dbname;
+    }
+
+
+    public function getUsername()
+    {
+        return $this->user;
+    }
+
+    public function getPassword()
+    {
+        return $this->pass;
+    }
+
     public function connect()
     {
         try {
-            $conn = new PDO('mysql:host=' . $this->server . '; dbname=' . $this->dbname, $this->user, $this->pass);
+            $conn = new PDO('mysql:host=' . $this->getServer() . '; dbname=' . $this->getDbname(), $this->getUsername(), $this->getPassword());
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
         } catch(PDOException $e) {
