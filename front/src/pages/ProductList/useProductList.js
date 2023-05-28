@@ -7,7 +7,9 @@ const useProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/products');
+      const response = await axios.get(
+        'https://scandiweb-task-natali.herokuapp.com/products'
+      );
       setProductList(response.data);
     } catch (error) {
       console.log(error);
@@ -29,9 +31,12 @@ const useProductList = () => {
 
   const handleMassDelete = async () => {
     try {
-      await axios.post('http://localhost:8080/products/delete', {
-        selectedProducts,
-      });
+      await axios.post(
+        'https://scandiweb-task-natali.herokuapp.com/products/delete',
+        {
+          selectedProducts,
+        }
+      );
 
       setSelectedProducts([]);
       fetchProducts();

@@ -8,7 +8,10 @@ const useProductAdd = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      await axios.post('http://localhost:8080/products/create', data);
+      await axios.post(
+        'https://scandiweb-task-natali.herokuapp.com/products/create',
+        data
+      );
       navigate('/');
     } catch (err) {
       const error = err.response.data.message;
