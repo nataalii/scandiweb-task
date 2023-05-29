@@ -7,10 +7,12 @@ class Router
     public $getRoutes = [];
     public $postRoutes = [];
     protected $conn;
+    protected $baseUrl;
 
     public function __construct($db)
     {
         $this->conn = $db;
+        $this->baseUrl = "https://scandiweb-task-natali.herokuapp.com"; // Set the base URL here
     }
 
     public function get($url, $fn)
@@ -27,6 +29,7 @@ class Router
     {
         $method = strtolower($_SERVER['REQUEST_METHOD']);
         $url = $_SERVER['PATH_INFO'] ?? '/';
+        $url = $this->baseUrl . $url; // Prepend the base URL to the requested path
 
         if ($method === 'get') {
             $fn = $this->getRoutes[$url] ?? null;
