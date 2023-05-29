@@ -6,7 +6,7 @@ const ProductItem = (props) => {
       <input
         type='checkbox'
         id='delete-checkbox'
-        className='absolute top-3 left-3 w-5 h-5 rounded cursor-pointer'
+        className='absolute top-3 left-3 w-5 h-5 rounded cursor-pointer delete-checkbox'
         checked={isSelected}
         onChange={() => props.onCheckboxChange(props.id)}
       />
