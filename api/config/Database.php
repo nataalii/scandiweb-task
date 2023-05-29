@@ -8,9 +8,9 @@ use PDOException;
 class Database
 {
     private $server = 'eu-cdbr-west-03.cleardb.net';
-    private $dbname = 'heroku_25bcb9adcf8ad53';
-    private $user = 'b1f43bbf3bebca';
-    private $pass = '68b25fd1';
+    private $dbname = 'heroku_cf732f42a0403a0';
+    private $user = 'b15d9954583406';
+    private $pass = '77eb9d0d';
 
 
     public function getServer()
