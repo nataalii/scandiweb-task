@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8468514e2ec421925d2db8129f0fdd24",
+    "content-hash": "a56d2b1ce14daa6ed4a4faccd261efa0",
     "packages": [
         {
             "name": "composer/pcre",
@@ -2055,7 +2055,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-mysqli": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
