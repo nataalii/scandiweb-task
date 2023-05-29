@@ -7,10 +7,10 @@ use PDOException;
 
 class Database
 {
-    private $server = 'localhost';
-    private $dbname = 'scandiweb';
-    private $user = 'root';
-    private $pass = 'nanana';
+    private $server = 'eu-cdbr-west-03.cleardb.net';
+    private $dbname = 'heroku_25bcb9adcf8ad53';
+    private $user = 'b1f43bbf3bebca';
+    private $pass = '68b25fd1';
 
 
     public function getServer()
