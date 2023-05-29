@@ -14,9 +14,7 @@
     "require": {
         "friendsofphp/php-cs-fixer": "^3.17",
         "ext-pdo": "*",
-        "ext-mysqli": "*",
-        "php": "^7.4 || ^8.0"
-
+        "ext-mysqli": "*"
     },
 
     "scripts": {
