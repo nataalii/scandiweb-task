@@ -1,5 +1,7 @@
-<h1>Scandiweb Junior Developer Test Assignment/h1>
-<p>This is a simple web application built with React and PHP to manage a list of products. The application consists of two main pages: the product list page and the product creation page. Users can add, delete, and view the list of products.
+<h1>Scandiweb Junior Developer Test Assignment </h1>
+<p>This is a simple web application built with PHP and ReactJS to manage a list of products.
+ The application consists of two main pages: the product list page and 
+ the product creation page. Users can add, delete, and view the list of products.
 
 Features
 Product List Page: Displays a list of products with their sku, names, prices and specific attribute. Users can view the details of each product, delete a product, or navigate to the product creation page.
@@ -10,7 +12,6 @@ Product Creation Page: Allows users to add new products to the list. Users can e
 <section>
 <h2>Table of Contents</h2>
 <ul>
-    <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#tech-stack">Tech Stack</a></li>
     <li><a href="#live-project">Live Project</a></li>
 </ul>
@@ -28,8 +29,7 @@ Product Creation Page: Allows users to add new products to the list. Users can e
 </section>
 
 <section id="live-project">
-    <ol>
-      <li><a href='https://scandiweb-task-natali.netlify.app/'>Live Project</a></li>
+ <h1>Live Project </h1>
+     <a href='https://scandiweb-task-natali.netlify.app/' target="_blank">https://scandiweb-task-natali.netlify.app/</a>
        
-    </ol>
 </section>
