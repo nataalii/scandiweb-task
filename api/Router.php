@@ -4,10 +4,8 @@ namespace app;
 
 class Router
 {
-    protected $getRoutes = [];
-    protected $postRoutes = [];
+    protected $routes = [];
     protected $conn;
-
 
     public function __construct($db)
     {
@@ -16,28 +14,26 @@ class Router
 
     public function get($url, $fn)
     {
-        $this->getRoutes[$url] = $fn;
+        $this->routes['GET'][$url] = $fn;
     }
 
     public function post($url, $fn)
     {
-        $this->postRoutes[$url] = $fn;
+        $this->routes['POST'][$url] = $fn;
     }
 
     public function resolve()
     {
-        $method = strtolower($_SERVER['REQUEST_METHOD']);
-        $url = $_SERVER['PATH_INFO'] ?? '/';
+        $method = $_SERVER['REQUEST_METHOD'];
+        $url = $_SERVER['REQUEST_URI'];
+        $path = parse_url($url, PHP_URL_PATH);
+        $route = $this->routes[$method][$path] ?? null;
 
-        if ($method === 'get') {
-            $fn = $this->getRoutes[$url] ?? null;
-        } else {
-            $fn = $this->postRoutes[$url] ?? null;
-        }
-        if (!$fn) {
+        if (!$route) {
             echo 'Page not found';
             exit;
         }
-        echo call_user_func($fn, $this->conn);
+
+        echo call_user_func($route, $this->conn);
     }
 }
