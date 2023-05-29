@@ -4,9 +4,10 @@ namespace app;
 
 class Router
 {
-    public $getRoutes = [];
-    public $postRoutes = [];
+    protected $getRoutes = [];
+    protected $postRoutes = [];
     protected $conn;
+
 
     public function __construct($db)
     {
