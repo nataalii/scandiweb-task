@@ -23,24 +23,19 @@ class ProductController
         return json_encode($products->fetchAll());
     }
 
+    public function model(string $modelName, $conn)
+    {
+        $model = 'app\\models\\' . $modelName;
+        return new $model($conn);
+    }
+
     public function create($conn)
     {
         $productData = json_decode(file_get_contents('php://input'));
-
-        switch ($productData->productType) {
-            case 'DVD':
-                $product = new DVD($conn);
-                break;
-            case 'Book':
-                $product = new Book($conn);
-                break;
-            case 'Furniture':
-                $product = new Furniture($conn);
-                break;
-        }
+        $product = $this->model(ucfirst($productData->productType), $conn);
 
         $product->setAttribute($productData);
-        return $product->create($productData);
+        $product->create($productData);
     }
 
     public function delete($conn)
