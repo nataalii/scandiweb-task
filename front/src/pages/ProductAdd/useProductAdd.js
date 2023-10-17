@@ -9,11 +9,12 @@ const useProductAdd = () => {
     console.log(data);
     try {
       await axios.post(
-        'https://scandiweb-task-natali.herokuapp.com/products/create',
+        'https://scandiweb-natali.000webhostapp.com/products/create',
         data
       );
       navigate('/');
     } catch (err) {
+      console.log(err);
       const error = err.response.data.message;
       if (error === 'Error: SKU should be unique!') {
         console.log(error);

@@ -7,10 +7,10 @@ use PDOException;
 
 class Database
 {
-    private $server = 'eu-cdbr-west-03.cleardb.net';
-    private $dbname = 'heroku_cf732f42a0403a0';
-    private $user = 'b15d9954583406';
-    private $pass = '77eb9d0d';
+    private $server = 'localhost';
+    private $dbname = 'id21411004_products';
+    private $user = 'id21411004_root';
+    private $pass = 'Natali!1';
 
 
     public function getServer()

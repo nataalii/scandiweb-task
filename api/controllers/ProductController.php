@@ -2,10 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\Book;
-use app\models\DVD;
-use app\models\Furniture;
-
 class ProductController
 {
     public function index()

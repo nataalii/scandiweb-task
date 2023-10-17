@@ -8,7 +8,7 @@ const useProductList = () => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        'https://scandiweb-task-natali.herokuapp.com/products'
+        'https://scandiweb-natali.000webhostapp.com/products'
       );
       setProductList(response.data);
     } catch (error) {
@@ -32,7 +32,7 @@ const useProductList = () => {
   const handleMassDelete = async () => {
     try {
       await axios.post(
-        'https://scandiweb-task-natali.herokuapp.com/products/delete',
+        'https://scandiweb-natali.000webhostapp.com/products/delete',
         {
           selectedProducts,
         }
