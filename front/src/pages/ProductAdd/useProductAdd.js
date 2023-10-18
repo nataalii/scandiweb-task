@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../services/axios';
 
 const useProductAdd = () => {
   const methods = useForm({ mode: 'all' });
@@ -8,10 +8,7 @@ const useProductAdd = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      await axios.post(
-        'https://scandiweb-natali.000webhostapp.com/products/create',
-        data
-      );
+      await axiosInstance.post('/products/create', data);
       navigate('/');
     } catch (err) {
       console.log(err);
