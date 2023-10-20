@@ -11,8 +11,8 @@ ini_set('display_errors', 1);
 $allowedOrigins = array(
     'http://127.0.0.1:5173',
     'http://localhost:8080',
-    'https://scandiweb-task-natali.netlify.app/',
-    'https://scandiweb-natali.000webhostapp.com/',
+    'https://scandiweb-task-natali.netlify.app',
+    'https://scandiweb-natali.000webhostapp.com',
 
 );
 
@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
     exit(0);
 }
-
 
 $database = new Database();
 $conn = $database->connect();
