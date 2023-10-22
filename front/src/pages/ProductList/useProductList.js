@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axiosInstance from '../../axios';
 
 const useProductList = () => {
   const [productList, setProductList] = useState([]);

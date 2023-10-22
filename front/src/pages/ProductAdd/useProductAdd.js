@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../axios';
 
 const useProductAdd = () => {
   const methods = useForm({ mode: 'all' });
@@ -9,7 +8,7 @@ const useProductAdd = () => {
     console.log(data);
     try {
       const response = await fetch(
-        'https://scandiweb--natali.000webhostapp.com/products/create/',
+        'https://scandiweb--natali.000webhostapp.com/products/create',
         {
           method: 'POST',
           headers: {
