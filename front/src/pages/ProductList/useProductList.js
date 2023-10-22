@@ -29,7 +29,7 @@ const useProductList = () => {
 
   const handleMassDelete = async () => {
     try {
-      const response = await axiosInstance.post('/products/delete', {
+      const response = await axiosInstance.post('/products/delete/', {
         selectedProducts,
       });
 
