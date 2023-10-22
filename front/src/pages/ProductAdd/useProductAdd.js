@@ -8,7 +8,7 @@ const useProductAdd = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      await axiosInstance.post('create', data);
+      await axiosInstance.post('/products/create', data);
       navigate('/');
     } catch (err) {
       const error = err.response.data.message;
