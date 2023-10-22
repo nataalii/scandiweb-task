@@ -35,16 +35,9 @@ const useProductList = () => {
 
       setSelectedProducts([]);
       fetchProducts();
-      console.log('Delete request successful', response.data); // Log successful response
+      console.log('Delete request successful', response.data);
     } catch (err) {
-      if (err.response) {
-        console.log('Error response status:', err.response.status);
-        console.log('Error response data:', err.response.data);
-      } else if (err.request) {
-        console.log('No response received:', err.request);
-      } else {
-        console.log('Error occurred:', err.message);
-      }
+      console.log(err);
     }
   };
 
