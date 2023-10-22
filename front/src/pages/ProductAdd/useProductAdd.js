@@ -6,9 +6,10 @@ const useProductAdd = () => {
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     console.log(data);
+
     try {
       const response = await fetch(
-        'https://scandiweb--natali.000webhostapp.com/products/create',
+        'https://scandiweb--natali.000webhostapp.com/products/create/',
         {
           method: 'POST',
           headers: {

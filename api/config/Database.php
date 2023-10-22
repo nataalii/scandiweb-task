@@ -7,10 +7,10 @@ use PDOException;
 
 class Database
 {
-    private $server = 'localhost';
-    private $dbname = 'id21438687_products';
-    private $user = 'id21438687_root';
-    private $pass = 'Natali!1';
+    private $server = 'ec2-34-242-154-118.eu-west-1.compute.amazonaws.com    ';
+    private $dbname = 'd3aqnarcjdau9k';
+    private $user = 'cjlmqyorokvswn';
+    private $pass = 'db0c8f0e3c2b890a463ba3e5b5a6fd78e09231196ba795204780b33b804ebc2c';
 
 
     public function getServer()
