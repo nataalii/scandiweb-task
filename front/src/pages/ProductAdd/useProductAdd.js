@@ -9,7 +9,7 @@ const useProductAdd = () => {
     console.log(data);
     try {
       await axios.post(
-        'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products/create',
+        'https://scandiweb-task-natali-b495e4b0b1ac.herokuapp.com/products/create',
         data
       );
       navigate('/');
