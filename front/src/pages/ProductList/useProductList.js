@@ -7,7 +7,7 @@ const useProductList = () => {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        'https://scandiweb--natali.000webhostapp.com/products'
+        'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products'
       );
       const data = await response.json();
       setProductList(data);
@@ -32,7 +32,7 @@ const useProductList = () => {
   const handleMassDelete = async () => {
     try {
       const response = await fetch(
-        'https://scandiweb--natali.000webhostapp.com/products/delete',
+        'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products/delete',
         {
           method: 'POST',
           headers: {

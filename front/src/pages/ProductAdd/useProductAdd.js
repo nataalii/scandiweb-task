@@ -9,7 +9,7 @@ const useProductAdd = () => {
 
     try {
       const response = await fetch(
-        'https://scandiweb--natali.000webhostapp.com/products/create/',
+        'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products/create/',
         {
           method: 'POST',
           headers: {
