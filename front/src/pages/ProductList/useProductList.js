@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axiosInstance from '../../axios';
+import axios from 'axios';
 
 const useProductList = () => {
   const [productList, setProductList] = useState([]);
@@ -7,7 +7,9 @@ const useProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axiosInstance.get('/products');
+      const response = await axios.get(
+        'https://scandiweb-natali.000webhostapp.com/products'
+      );
       setProductList(response.data);
     } catch (error) {
       console.log(error);
@@ -29,9 +31,12 @@ const useProductList = () => {
 
   const handleMassDelete = async () => {
     try {
-      await axiosInstance.post('/products/delete', {
-        selectedProducts,
-      });
+      await axios.post(
+        'https://scandiweb-natali.000webhostapp.com/products/delete',
+        {
+          selectedProducts,
+        }
+      );
 
       setSelectedProducts([]);
       fetchProducts();
