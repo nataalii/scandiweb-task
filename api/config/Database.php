@@ -8,8 +8,8 @@ use PDOException;
 class Database
 {
     private $server = 'localhost';
-    private $dbname = 'id21411004_products';
-    private $user = 'id21411004_root';
+    private $dbname = 'id21438687_products';
+    private $user = 'id21438687_root';
     private $pass = 'Natali!1';
 
 
