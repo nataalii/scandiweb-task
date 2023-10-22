@@ -7,11 +7,11 @@ use PDOException;
 
 class Database
 {
-    private $server = 'ec2-34-242-154-118.eu-west-1.compute.amazonaws.com';
-    private $dbname = 'd3aqnarcjdau9k';
-    private $user = 'cjlmqyorokvswn';
-    private $pass = 'db0c8f0e3c2b890a463ba3e5b5a6fd78e09231196ba795204780b33b804ebc2c';
-
+    private $server = 'ec2-34-242-199-141.eu-west-1.compute.amazonaws.com';
+    private $dbname = 'd32g9kmqr45goc';
+    private $user = 'tjqpqyzwpuyvpy';
+    private $pass = 'cb1042aa93dce7acd7758d2f3d78d310ad955cebb78af4024507616585360ebe';
+    private $port = 5432;
 
     public function getServer()
     {
@@ -22,7 +22,6 @@ class Database
     {
         return $this->dbname;
     }
-
 
     public function getUsername()
     {
@@ -37,10 +36,10 @@ class Database
     public function connect()
     {
         try {
-            $conn = new PDO('mysql:host=' . $this->getServer() . '; dbname=' . $this->getDbname(), $this->getUsername(), $this->getPassword());
+            $conn = new PDO('pgsql:host=' . $this->getServer() . ';port=' . $this->port . ';dbname=' . $this->getDbname(), $this->getUsername(), $this->getPassword());
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'Database Error: ' . $e->getMessage();
         }
     }
