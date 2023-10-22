@@ -8,17 +8,31 @@ const useProductAdd = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      await axiosInstance.post('/products/create/', data);
-      navigate('/');
-    } catch (err) {
-      const error = err.response.data.message;
-      if (error === 'Error: SKU should be unique!') {
-        console.log(error);
-        methods.setError('sku', {
-          type: 'skuExists',
-          message: 'SKU should be unique!',
-        });
+      const response = await fetch(
+        'https://scandiweb--natali.000webhostapp.com/products/create/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        const error = await response.json();
+        if (error.message === 'Error: SKU should be unique!') {
+          console.log(error.message);
+          methods.setError('sku', {
+            type: 'skuExists',
+            message: 'SKU should be unique!',
+          });
+        }
+      } else {
+        navigate('/');
       }
+    } catch (err) {
+      console.error('Error submitting product:', err);
     }
   };
 

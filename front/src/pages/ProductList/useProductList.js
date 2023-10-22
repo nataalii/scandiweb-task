@@ -7,10 +7,13 @@ const useProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axiosInstance.get('/products');
-      setProductList(response.data);
+      const response = await fetch(
+        'https://scandiweb--natali.000webhostapp.com/products'
+      );
+      const data = await response.json();
+      setProductList(data);
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching products:', error);
     }
   };
 
@@ -29,15 +32,25 @@ const useProductList = () => {
 
   const handleMassDelete = async () => {
     try {
-      const response = await axiosInstance.post('/products/delete/', {
-        selectedProducts,
-      });
+      const response = await fetch(
+        'https://scandiweb--natali.000webhostapp.com/products/delete',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ selectedProducts }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
       setSelectedProducts([]);
       fetchProducts();
-      console.log('Delete request successful', response.data);
     } catch (err) {
-      console.log(err);
+      console.error('Error handling mass delete:', err);
     }
   };
 
