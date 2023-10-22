@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../axios';
 
 const useProductList = () => {
   const [productList, setProductList] = useState([]);
@@ -7,9 +7,7 @@ const useProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(
-        'https://scandiweb-natali.000webhostapp.com/products'
-      );
+      const response = await axiosInstance.get('/products');
       setProductList(response.data);
     } catch (error) {
       console.log(error);
@@ -31,17 +29,22 @@ const useProductList = () => {
 
   const handleMassDelete = async () => {
     try {
-      await axios.post(
-        'https://scandiweb-natali.000webhostapp.com/products/delete',
-        {
-          selectedProducts,
-        }
-      );
+      const response = await axiosInstance.post('/products/delete', {
+        selectedProducts,
+      });
 
       setSelectedProducts([]);
       fetchProducts();
+      console.log('Delete request successful', response.data); // Log successful response
     } catch (err) {
-      console.log(err);
+      if (err.response) {
+        console.log('Error response status:', err.response.status);
+        console.log('Error response data:', err.response.data);
+      } else if (err.request) {
+        console.log('No response received:', err.request);
+      } else {
+        console.log('Error occurred:', err.message);
+      }
     }
   };
 
