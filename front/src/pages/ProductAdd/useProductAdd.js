@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,36 +7,24 @@ const useProductAdd = () => {
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     console.log(data);
-
     try {
-      const response = await fetch(
-        'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products/create/',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }
+      await axios.post(
+        'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products/create',
+        data
       );
-
-      if (!response.ok) {
-        const error = await response.json();
-        if (error.message === 'Error: SKU should be unique!') {
-          console.log(error.message);
-          methods.setError('sku', {
-            type: 'skuExists',
-            message: 'SKU should be unique!',
-          });
-        }
-      } else {
-        navigate('/');
-      }
+      navigate('/');
     } catch (err) {
-      console.error('Error submitting product:', err);
+      console.log(err);
+      const error = err.response.data.message;
+      if (error === 'Error: SKU should be unique!') {
+        console.log(error);
+        methods.setError('sku', {
+          type: 'skuExists',
+          message: 'SKU should be unique!',
+        });
+      }
     }
   };
-
   return { methods, onSubmit };
 };
 

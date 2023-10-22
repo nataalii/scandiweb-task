@@ -1,25 +1,21 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
-
 const useProductList = () => {
   const [productList, setProductList] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-
   const fetchProducts = async () => {
     try {
-      const response = await fetch(
+      const response = await axios.get(
         'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products'
       );
-      const data = await response.json();
-      setProductList(data);
+      setProductList(response.data);
     } catch (error) {
-      console.error('Error fetching products:', error);
+      console.log(error);
     }
   };
-
   useEffect(() => {
     fetchProducts();
   }, []);
-
   const handleCheckboxChange = (productId) => {
     const isSelected = selectedProducts.includes(productId);
     if (isSelected) {
@@ -28,31 +24,20 @@ const useProductList = () => {
       setSelectedProducts([...selectedProducts, productId]);
     }
   };
-
   const handleMassDelete = async () => {
     try {
-      const response = await fetch(
+      await axios.post(
         'https://scandiweb-task-natali-e04900373a7a.herokuapp.com/products/delete',
         {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ selectedProducts }),
+          selectedProducts,
         }
       );
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
       setSelectedProducts([]);
       fetchProducts();
     } catch (err) {
-      console.error('Error handling mass delete:', err);
+      console.log(err);
     }
   };
-
   return {
     productList,
     handleCheckboxChange,
